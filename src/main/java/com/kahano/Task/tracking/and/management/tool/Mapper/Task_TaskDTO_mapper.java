@@ -1,4 +1,4 @@
-package com.kahano.Task.tracking.and.management.tool.domain.Mapper;
+package com.kahano.Task.tracking.and.management.tool.Mapper;
 
 import com.kahano.Task.tracking.and.management.tool.domain.DTO.TaskDTO;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.Task;

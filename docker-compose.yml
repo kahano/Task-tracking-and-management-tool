@@ -1,0 +1,17 @@
+services :
+  #postgreSQL database
+  db:
+    # The docker image of postgres
+    image: postgres:latest
+
+    # the ports hosting the container
+
+    ports:
+      - "5432:5432"
+      # we will restart docker compose if we accidentally kill the running container
+    restart: always
+
+    environment:
+      POSTGRES_PASSWORD: Kahano1988?
+
+
