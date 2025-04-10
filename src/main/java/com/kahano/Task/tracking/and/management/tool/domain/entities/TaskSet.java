@@ -1,12 +1,19 @@
 package com.kahano.Task.tracking.and.management.tool.domain.entities;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="Task_list")
@@ -39,8 +46,6 @@ public class TaskSet {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.created = created;
-        this.updated = updated;
         this.tasks = tasks;
     }
 
