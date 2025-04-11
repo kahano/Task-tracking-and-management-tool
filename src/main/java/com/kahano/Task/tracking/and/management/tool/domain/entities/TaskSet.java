@@ -42,7 +42,7 @@ public class TaskSet {
     private List<Task> tasks;
 
 
-    public TaskSet(UUID id, String title, String description, List<Task> tasks) {
+    public TaskSet(UUID id, String title, String description, LocalDateTime now, LocalDateTime localDateTime, List<Task> tasks) {
         this.id = id;
         this.title = title;
         this.description = description;

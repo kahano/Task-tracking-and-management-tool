@@ -14,4 +14,6 @@ public interface TaskSetService {
     TaskSet getTaskSetByTaskId(UUID id);
 
     TaskSet createTaskSet(TaskSet taskSet);
+
+    TaskSet updateTaskSet(UUID taskSetId, TaskSet taskSet);
 }

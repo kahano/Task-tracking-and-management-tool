@@ -24,7 +24,7 @@ public class TaskSet_TaskSetDTO_mapper {
                 taskSetDTO.id(),
                 taskSetDTO.title(),
                 taskSetDTO.Description(),
-                Optional.ofNullable(taskSetDTO.tasks())
+                now, now, Optional.ofNullable(taskSetDTO.tasks())
                         .map(tasks -> tasks.stream()
                                 .map(mapper::toTask)
                                 .collect(Collectors.toList()))
