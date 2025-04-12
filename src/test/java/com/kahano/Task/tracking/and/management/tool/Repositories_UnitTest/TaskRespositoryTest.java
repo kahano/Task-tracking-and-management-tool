@@ -48,10 +48,10 @@ class TaskRespositoryTest {
         taskSet.setCreated(now);
         taskSet.setUpdated(now);
 
-       taskSet = taskSetRepository.save(taskSet); // ✅ Save the TaskSet first
+       taskSet = taskSetRepository.save(taskSet);
         Task task1 = new Task();
         task1.setTitle("Business meeting");
-        task1.setPriority(TaskPriority.HIGH); // 👈 add this line
+        task1.setPriority(TaskPriority.HIGH);
         task1.setTaskSet(taskSet);
 
         Task task2 = new Task();
@@ -81,7 +81,7 @@ class TaskRespositoryTest {
         taskSet.setCreated(now);
         taskSet.setUpdated(now);
 
-        taskSet = taskSetRepository.save(taskSet); // ✅ Save the TaskSet first
+        taskSet = taskSetRepository.save(taskSet);
         Task task1 = new Task();
         task1.setTitle("Business meeting");
         task1.setStatus(TaskStatus.OPEN);
