@@ -6,10 +6,7 @@ import com.kahano.Task.tracking.and.management.tool.domain.entities.Task;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskPriority;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskSet;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskStatus;
-import jakarta.transaction.Transactional;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -18,15 +15,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @DataJpaTest(  properties = {
         "spring.jpa.properties.javax.persistence.validation.mode=none"
@@ -41,7 +35,7 @@ class TaskRespositoryTest {
     @Autowired
     private TaskSetRepository taskSetRepository;
 
-    
+
 
     @Test
 
@@ -51,8 +45,8 @@ class TaskRespositoryTest {
 
         TaskSet taskSet = new TaskSet();
         taskSet.setTitle("Test TaskSet");
-        taskSet.setCreated(null);
-        taskSet.setUpdated(null);
+        taskSet.setCreated(now);
+        taskSet.setUpdated(now);
 
        taskSet = taskSetRepository.save(taskSet); // ✅ Save the TaskSet first
         Task task1 = new Task();
