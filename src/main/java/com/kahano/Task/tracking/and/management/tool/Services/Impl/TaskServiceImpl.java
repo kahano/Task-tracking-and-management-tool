@@ -20,6 +20,7 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRespository taskRepository;
 
     private final TaskSetRepository taskSetRepository;
+
     public TaskServiceImpl(TaskRespository taskRepository, TaskSetRepository taskSetRepository) {
         this.taskRepository = taskRepository;
         this.taskSetRepository = taskSetRepository;
@@ -51,7 +52,7 @@ public class TaskServiceImpl implements TaskService {
         TaskSet taskList = taskSetRepository
                 .findById(taskListId)
                 .orElseThrow(()->
-                        new IllegalArgumentException("Invalid Task List ID provided")
+                        new IllegalArgumentException("Invalid TaskSet ID provided")
                 );
         LocalDateTime now = LocalDateTime.now();
         return taskRepository.save(new Task(

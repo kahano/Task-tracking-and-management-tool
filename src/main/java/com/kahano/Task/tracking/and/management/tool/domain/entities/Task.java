@@ -1,10 +1,7 @@
 package com.kahano.Task.tracking.and.management.tool.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @Entity
 @Table(name="Task")
 @Data
+@Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Task {
