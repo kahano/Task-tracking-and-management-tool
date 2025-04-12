@@ -4,19 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="Task_list")
+@Table(name="TaskSet")
 @Data
 @NoArgsConstructor
 
@@ -33,19 +26,21 @@ public class TaskSet {
     private String description;
 
 
-    @Column(name = "created", nullable = false)
+    @Column(name = "created")
     private LocalDateTime created;
-    @Column(name = "updated", nullable = false)
+    @Column(name = "updated")
     private LocalDateTime updated;
 
-    @OneToMany(mappedBy = "taskSet", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "taskSet", cascade = {CascadeType.ALL})
     private List<Task> tasks;
 
 
-    public TaskSet(UUID id, String title, String description, LocalDateTime now, LocalDateTime localDateTime, List<Task> tasks) {
+    public TaskSet(UUID id, String title, String description, LocalDateTime created, LocalDateTime updated, List<Task> tasks) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.created = created;
+        this.updated = updated;
         this.tasks = tasks;
     }
 

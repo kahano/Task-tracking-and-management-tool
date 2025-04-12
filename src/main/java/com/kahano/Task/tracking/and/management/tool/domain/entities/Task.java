@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Entity
 @Table(name="Task")
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 public class Task {
 
@@ -25,7 +26,8 @@ public class Task {
     @Column(name="id", nullable=false, updatable = false)
     private UUID id;
 
-    @Column(name = "title", nullable = false)
+
+    @Column(name = "title")
     private String title;
 
     @Column(name = "description")
@@ -34,18 +36,18 @@ public class Task {
     @Column(name = "due_date")
     private LocalDate dueDate;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private TaskStatus status;
 
-    @Column(name="priority", nullable = false)
+    @Column(name="priority")
     private TaskPriority priority;
 
-    @Column(name="created", nullable = false)
+    @Column(name="created")
     private LocalDateTime created;
 
 
 
-    @Column(name="updated", nullable = false)
+    @Column(name="updated")
     private LocalDateTime updated;
 
 

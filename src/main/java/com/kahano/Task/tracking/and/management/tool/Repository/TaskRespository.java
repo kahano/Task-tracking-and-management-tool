@@ -17,7 +17,7 @@ public interface TaskRespository extends JpaRepository<Task, UUID> {
 
 
     // JPQL with named parameters
-    @Query("SELECT t FROM Task t WHERE t.taskSet.id = :taskSetId AND t.id = :taskId")
+    @Query(value = "SELECT t FROM Task t WHERE t.taskSet.id = :taskSetId AND t.id = :taskId")
     Optional<Task> findByTaskSetIdAndTaskId(
             @Param("taskSetId") UUID taskSetId,
             @Param("taskId") UUID taskId

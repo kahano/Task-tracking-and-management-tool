@@ -4,8 +4,11 @@ import com.kahano.Task.tracking.and.management.tool.domain.DTO.TaskDTO;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.Task;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class Task_TaskDTO_mapper {
+    LocalDateTime now = LocalDateTime.now();
     public TaskDTO toTaskDTO( Task task) {
         return new TaskDTO(
                 task.getId(),

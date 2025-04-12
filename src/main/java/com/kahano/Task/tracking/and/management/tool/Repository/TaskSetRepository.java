@@ -13,7 +13,7 @@ import java.util.UUID;
 @Repository
     public interface TaskSetRepository extends JpaRepository<TaskSet, UUID> {
 
-        @Query("SELECT ts FROM TaskSet ts JOIN ts.tasks t WHERE t.id = :taskId")
+        @Query(value = "SELECT ts FROM TaskSet ts JOIN ts.tasks t WHERE t.id = :taskId")
         Optional<TaskSet> findTaskSetByTaskId(@Param("taskId") UUID taskId);
     }
 

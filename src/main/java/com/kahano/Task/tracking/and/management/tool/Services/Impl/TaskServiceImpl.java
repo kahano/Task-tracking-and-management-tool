@@ -61,8 +61,7 @@ public class TaskServiceImpl implements TaskService {
                 task.getDueDate(),
                 priority,
                 TaskStatus.OPEN,
-                now,
-                now,
+                now,now,
                 taskList
  ));
     }
