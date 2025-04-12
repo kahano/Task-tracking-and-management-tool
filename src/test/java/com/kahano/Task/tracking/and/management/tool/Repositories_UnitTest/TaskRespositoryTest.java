@@ -41,15 +41,10 @@ class TaskRespositoryTest {
     @Autowired
     private TaskSetRepository taskSetRepository;
 
-
-
-
-
-
-
+    
 
     @Test
-//    @Transactional
+
     void itShouldReturnTaskByTaskSetID_And_TaskID() {
         LocalDateTime now = LocalDateTime.now();
         LocalDate dueDate = LocalDate.of(2025, 4, 30);
