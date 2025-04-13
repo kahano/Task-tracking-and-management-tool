@@ -133,6 +133,7 @@ class TaskServiceImplTest {
 
         assertThat(taskList).size().isGreaterThan(0);
         assertThat(taskList).isNotNull();
+        assertThat(taskList).hasSize(3);
 
         Mockito.verify(taskRepository_test, times(1)).findByTaskSetId(taskSet.getId());
 
