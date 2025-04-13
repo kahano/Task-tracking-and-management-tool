@@ -12,6 +12,6 @@ services :
     restart: always
 
     environment:
-      POSTGRES_PASSWORD: "Kahano1988?"
+      POSTGRES_PASSWORD: ""
 
 
