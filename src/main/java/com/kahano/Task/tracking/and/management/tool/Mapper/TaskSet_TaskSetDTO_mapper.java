@@ -13,13 +13,8 @@ import java.util.stream.Collectors;
 @Component
 public class TaskSet_TaskSetDTO_mapper {
 
-    private final Task_TaskDTO_mapper mapper;
 
-    public TaskSet_TaskSetDTO_mapper(Task_TaskDTO_mapper mapper) {
-        this.mapper = mapper;
-    }
-
-    public TaskSet toTaskSet(TaskSetDTO taskSetDTO) {
+    public static TaskSet toTaskSet(TaskSetDTO taskSetDTO) {
         return new TaskSet(
                 taskSetDTO.id(),
                 taskSetDTO.title(),
@@ -27,13 +22,13 @@ public class TaskSet_TaskSetDTO_mapper {
                  null, null,
                  Optional.ofNullable(taskSetDTO.tasks())
                         .map(tasks -> tasks.stream()
-                                .map(mapper::toTask)
+                                .map(Task_TaskDTO_mapper::toTask)
                                 .collect(Collectors.toList()))
                         .orElse(null)
         );
     }
 
-    public TaskSetDTO toTaskSetDTO(TaskSet taskSet) {
+    public static TaskSetDTO toTaskSetDTO(TaskSet taskSet) {
         final List<Task> tasks = taskSet.getTasks();
         return new TaskSetDTO(
                 taskSet.getId(),
@@ -45,13 +40,13 @@ public class TaskSet_TaskSetDTO_mapper {
                 calculateProgress(tasks),
                 Optional.ofNullable(taskSet.getTasks())
                       .map(task -> task.stream()
-                        .map(mapper::toTaskDTO)
+                        .map(Task_TaskDTO_mapper::toTaskDTO)
                         .collect(Collectors.toList()))
                         .orElse(null)
         );
     }
 
-    private Double calculateProgress(List<Task> tasks){
+    private static Double calculateProgress(List<Task> tasks){
         if(tasks==null){
             return null;
         }

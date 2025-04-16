@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Component
 public class Task_TaskDTO_mapper {
     LocalDateTime now = LocalDateTime.now();
-    public TaskDTO toTaskDTO( Task task) {
+    public static TaskDTO toTaskDTO( Task task) {
         return new TaskDTO(
                 task.getId(),
                 task.getTitle(),
@@ -21,7 +21,7 @@ public class Task_TaskDTO_mapper {
 
     }
 
-    public Task toTask( TaskDTO dto) {
+    public static Task toTask( TaskDTO dto) {
         return new Task(
                 dto.id(),
                 dto.title(),
