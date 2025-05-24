@@ -15,6 +15,9 @@ import java.util.UUID;
 
         @Query(value = "SELECT ts FROM TaskSet ts JOIN ts.tasks t WHERE t.id = :taskId")
         Optional<TaskSet> findTaskSetByTaskId(@Param("taskId") UUID taskId);
+
+       // Optional<TaskSet> findTaskSetById(UUID Id);
+
     }
 
 

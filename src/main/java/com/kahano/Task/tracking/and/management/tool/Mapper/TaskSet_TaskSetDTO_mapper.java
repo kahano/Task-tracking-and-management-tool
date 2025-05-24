@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class TaskSet_TaskSetDTO_mapper {
 
 
-    public static TaskSet toTaskSet(TaskSetDTO taskSetDTO) {
+    public TaskSet toTaskSet(TaskSetDTO taskSetDTO) {
         return new TaskSet(
                 taskSetDTO.id(),
                 taskSetDTO.title(),
@@ -28,7 +28,7 @@ public class TaskSet_TaskSetDTO_mapper {
         );
     }
 
-    public static TaskSetDTO toTaskSetDTO(TaskSet taskSet) {
+    public TaskSetDTO toTaskSetDTO(TaskSet taskSet) {
         final List<Task> tasks = taskSet.getTasks();
         return new TaskSetDTO(
                 taskSet.getId(),
@@ -46,7 +46,7 @@ public class TaskSet_TaskSetDTO_mapper {
         );
     }
 
-    private static Double calculateProgress(List<Task> tasks){
+    private  Double calculateProgress(List<Task> tasks){
         if(tasks==null){
             return null;
         }

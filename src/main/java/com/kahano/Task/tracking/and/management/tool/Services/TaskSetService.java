@@ -4,6 +4,7 @@ import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskSet;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -16,4 +17,6 @@ public interface TaskSetService {
     TaskSet createTaskSet(TaskSet taskSet);
 
     TaskSet updateTaskSet(UUID taskSetId, TaskSet taskSet);
+
+    Optional<TaskSet> getTaskSet(UUID id);
 }

@@ -27,7 +27,7 @@ public class TaskSetServiceImpl implements TaskSetService {
     @Override
     public TaskSet getTaskSetByTaskId(UUID id) { // get a taskList by searching for a TaskId that is contained in a taskList
         Optional<TaskSet> taskList =  taskSetRepository.findTaskSetByTaskId(id);
-        return taskList.isPresent() ? taskList.get() : null;
+        return taskList.orElse(null);
     }
 
     @Override
@@ -74,6 +74,12 @@ public class TaskSetServiceImpl implements TaskSetService {
 
 
 
+
+    }
+
+    @Override
+    public Optional<TaskSet> getTaskSet(UUID id) {
+        return taskSetRepository.findById(id);
 
     }
 }
