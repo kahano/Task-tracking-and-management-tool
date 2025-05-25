@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,6 +51,7 @@ class TaskSetServiceImplTest {
     @BeforeEach
     void setUp() {
 
+
         taskSet = TaskSet.builder()
                 .title("Test TaskSet")
                 .created(LocalDateTime.now())
@@ -71,9 +73,6 @@ class TaskSetServiceImplTest {
 
         // 3. Now add the Task to the TaskSet's list
         taskSet.setTasks(List.of(task));
-
-
-
 
 
 
@@ -175,8 +174,41 @@ class TaskSetServiceImplTest {
     @Test
     void itShouldUpdateTaskSet() {
         // Given
+
+        UUID id = UUID.randomUUID(); // acts as an existing taskset id
+
+        TaskSet taskSetUpdate = TaskSet.builder()
+                .id(id)
+                .title("Test an updated TaskSet")
+                .created(LocalDateTime.now())
+                .updated(LocalDateTime.now())
+                .tasks(new ArrayList<>())
+                .build();
+        Task nytask = Task.builder()
+                .title("Parents meeting")
+                .description("talks about convention")
+                .status(TaskStatus.OPEN)
+                .priority(TaskPriority.MEDIUM)
+                .created(LocalDateTime.now())
+                .updated(LocalDateTime.now())
+                .taskSet(taskSetUpdate)
+                .build();
+
+        taskSetUpdate.setTasks(List.of(nytask,task));
+
         // when
+
+        when(taskSetRepository_test.findById(id)).thenReturn(Optional.of(taskSetUpdate));
+        when(taskSetRepository_test.save(taskSetUpdate)).thenReturn(taskSetUpdate);
+
+        TaskSet taskSet_check = TaskService_test.updateTaskSet(id,taskSetUpdate);
+
         // then
+
+        assertThat(taskSetUpdate).isNotNull();
+        assertThat(taskSetUpdate.getTasks().contains(nytask));
+        assertThat(taskSetUpdate.getTasks().size()).isGreaterThan(1);
+        assertThat(taskSetUpdate.getTitle()).isEqualToIgnoringCase("Test an updated taskSet");
 
 
     }
@@ -184,7 +216,37 @@ class TaskSetServiceImplTest {
     @Test
     void itShouldGetTaskSet(){
         // Given
+
+        UUID id = UUID.randomUUID(); // acts as an existing taskset id
+
+        TaskSet taskSetUpdate = TaskSet.builder()
+                .id(id)
+                .title("Test an updated TaskSet")
+                .created(LocalDateTime.now())
+                .updated(LocalDateTime.now())
+                .tasks(new ArrayList<>())
+                .build();
+        Task nytask = Task.builder()
+                .title("Parents meeting")
+                .description("talks about convention")
+                .status(TaskStatus.OPEN)
+                .priority(TaskPriority.MEDIUM)
+                .created(LocalDateTime.now())
+                .updated(LocalDateTime.now())
+                .taskSet(taskSetUpdate)
+                .build();
+
+        taskSetUpdate.setTasks(List.of(nytask,task));
+
         // when
+
+        when(taskSetRepository_test.findById(id)).thenReturn(Optional.of(taskSetUpdate));
+
+        Optional<TaskSet> getTaskSet = TaskService_test.getTaskSet(id);
+
         // then
+        assertThat(getTaskSet).isNotNull();
+        assertThat(getTaskSet.get().getTasks().containsAll(List.of(task,nytask)));
+        assertThat(getTaskSet.get().getTasks().size()).isEqualTo(2);
     }
 }
