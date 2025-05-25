@@ -17,6 +17,7 @@ import java.util.UUID;
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "taskSet")
 public class Task {
 
     @Id

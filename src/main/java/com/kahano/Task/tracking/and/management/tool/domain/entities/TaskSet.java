@@ -1,6 +1,7 @@
 package com.kahano.Task.tracking.and.management.tool.domain.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,12 +9,14 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name="TaskSet")
-@Data
 @NoArgsConstructor
+@Data
 @Builder
+@ToString(exclude = "tasks")
 public class TaskSet {
 
     @Id
@@ -32,8 +35,9 @@ public class TaskSet {
     @Column(name = "updated")
     private LocalDateTime updated;
 
+
     @OneToMany(mappedBy = "taskSet", cascade = {CascadeType.ALL})
-    private List<Task> tasks;
+    private List<Task> tasks ;
 
 
     public TaskSet(UUID id, String title, String description, LocalDateTime created, LocalDateTime updated, List<Task> tasks) {

@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ class TaskServiceImplTest {
                 .title("Test TaskSet")
                 .created(LocalDateTime.now())
                 .updated(LocalDateTime.now())
+                .tasks(new ArrayList<>())
                 .build();
 
         task = Task.builder()
@@ -78,6 +80,7 @@ class TaskServiceImplTest {
                 .description("Description of task")
                 .dueDate(null) // optional
                 .build();
+         taskSet.setTasks(List.of(task,task2,inputTask));
     }
 
     @AfterEach
@@ -95,8 +98,8 @@ class TaskServiceImplTest {
 
         when(taskSetRepository_test.findById(taskSet.getId())).thenReturn(Optional.ofNullable(taskSet)); // handle nullpointer exception in case
         when(taskRepository_test.save(Mockito.any(Task.class))).thenAnswer(invocation -> {
-            Task taskToSave = invocation.getArgument(0);
-            return taskToSave;
+            return invocation.getArgument(0);
+
         });
 
         // When
@@ -108,8 +111,10 @@ class TaskServiceImplTest {
         assertThat(savedTask.getTaskSet()).isEqualTo(taskSet);
         assertThat(savedTask.getPriority()).isEqualTo(TaskPriority.MEDIUM); // default
         assertThat(savedTask.getStatus()).isEqualTo(TaskStatus.OPEN);
-        assertThat(savedTask.getCreated()).isNotNull();
-        assertThat(savedTask.getUpdated()).isNotNull();
+        assertThat(savedTask.getTaskSet().getTasks().contains(savedTask));
+        assertThat(savedTask.getTaskSet().getTasks().size()).isGreaterThan(1);
+        assertThat(savedTask.getTaskSet().getTasks().size()).isEqualTo(3);
+
 
         Mockito.verify(taskSetRepository_test, times(1)).findById(taskSet.getId());
         Mockito.verify(taskRepository_test, times(1)).save(Mockito.any(Task.class));
