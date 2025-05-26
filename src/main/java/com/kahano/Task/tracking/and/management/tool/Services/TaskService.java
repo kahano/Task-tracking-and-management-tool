@@ -3,13 +3,16 @@ package com.kahano.Task.tracking.and.management.tool.Services;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.Task;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface TaskService {
 
     List<Task> getAllTask(UUID taskSetId);
 
-    Task getTaskById(UUID taskSetId, UUID taskId);
+    Optional<Task> getTaskById(UUID taskSetId, UUID taskId);
 
     Task createTask(UUID taskListId, Task task);
+
+    Task UpdateTask(UUID taskListId, UUID taskId, Task task);
 }

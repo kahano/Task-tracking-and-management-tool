@@ -157,7 +157,7 @@ class TaskServiceImplTest {
 
         // then
 
-        Optional<Task> existing_task = Optional.ofNullable(taskService.getTaskById(taskSet.getId(), task.getId()));
+        Optional<Task> existing_task = taskService.getTaskById(taskSet.getId(), task.getId());
 
         assertThat(existing_task).isNotNull();
         assertThat(existing_task.get().getTitle()).isEqualTo("Business meeting");

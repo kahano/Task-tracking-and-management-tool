@@ -9,8 +9,10 @@ import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskSet;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -32,9 +34,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getTaskById(UUID taskSetId, UUID taskId) {
-        Optional<Task> task = taskRepository.findByTaskSetIdAndTaskId(taskSetId, taskId);
-        return task.isPresent() ? task.get() : null;
+    public Optional<Task> getTaskById(UUID taskSetId, UUID taskId) {
+        return taskRepository.findByTaskSetIdAndTaskId(taskSetId, taskId);
 
     }
 
@@ -66,4 +67,37 @@ public class TaskServiceImpl implements TaskService {
                 taskList
  ));
     }
+
+    @Override
+    public Task UpdateTask(UUID taskListId, UUID taskId, Task task) {
+        if(task.getId() == null){
+            throw new IllegalArgumentException("Task mus have an ID");
+        }
+
+        if(!Objects.equals(taskId,task.getId())){
+            throw new IllegalArgumentException("Given TaskID's do not match");
+        }
+
+        if(task.getPriority()==null){
+            throw new IllegalArgumentException("Task must have a valid Priority");
+        }
+        if(task.getStatus()==null){
+            throw new IllegalArgumentException("Task must have a valid status");
+        }
+
+        Task updated_task = taskRepository.findByTaskSetIdAndTaskId(taskListId,taskListId)
+                .orElseThrow(() -> new IllegalStateException("Task not found"));
+
+        updated_task.setTitle(task.getTitle());
+        updated_task.setDescription(task.getDescription());
+        updated_task.setDueDate(task.getDueDate());
+        updated_task.setPriority(task.getPriority());
+        updated_task.setStatus(task.getStatus());
+        updated_task.setUpdated(LocalDateTime.now());
+
+        return taskRepository.save(updated_task);
+
+
+    }
+
 }

@@ -41,6 +41,12 @@ public class TaskSetController {
         return taskSetService.getTaskSet(id).map(taskSetMapper::toTaskSetDTO);
     }
 
+    @PutMapping("/{task_set_id}")
+    public TaskSetDTO UpdateTaskSet(@PathVariable("task_set_id") UUID id, @RequestBody TaskSetDTO taskSetDTO){
+        TaskSet taskSet = taskSetService.updateTaskSet(id,taskSetMapper.toTaskSet(taskSetDTO));
+        return taskSetMapper.toTaskSetDTO(taskSet);
+    }
+
 
 
 
