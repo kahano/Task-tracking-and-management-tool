@@ -56,6 +56,12 @@ public class TaskController {
 
     }
 
+    @DeleteMapping("/{task_id}")
+    public void DeleteTask(@PathVariable("task_list_id") UUID taskSetId, @PathVariable("task_id") UUID taskId){
+
+        taskService.deleteTask(taskSetId,taskId);
+    }
+
 
 
 

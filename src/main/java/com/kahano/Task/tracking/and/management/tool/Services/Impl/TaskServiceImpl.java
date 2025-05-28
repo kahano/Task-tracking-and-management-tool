@@ -8,6 +8,7 @@ import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskPriority
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskSet;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findByTaskSetIdAndTaskId(taskSetId, taskId);
 
     }
-
+    @Transactional
     @Override
     public Task createTask(UUID taskListId, Task task) {
 
@@ -68,6 +69,7 @@ public class TaskServiceImpl implements TaskService {
  ));
     }
 
+    @Transactional
     @Override
     public Task UpdateTask(UUID taskListId, UUID taskId, Task task) {
         if(task.getId() == null){
@@ -97,6 +99,25 @@ public class TaskServiceImpl implements TaskService {
 
         return taskRepository.save(updated_task);
 
+
+    }
+
+
+    @Override
+    public void deleteTask(UUID taskSetId, UUID taskId) {
+        TaskSet taskSet = taskSetRepository.findById(taskSetId).orElseThrow(()->
+                new RuntimeException("TaskSet is not found "));
+
+        Task taskToDelete = taskSet.getTasks().stream().filter(
+                task->task.getId().equals(taskId)).findFirst().orElseThrow(()->
+                new RuntimeException("Task is not Found"));
+
+        taskRepository.delete(taskToDelete);
+
+        /*
+        Another alternative is to add a separate method in the repository class that takes the same
+        Parameters for UUIDS as here in this method, so it would make a query to the database by the help of Spring JPA.
+        * */
 
     }
 

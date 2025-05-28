@@ -5,6 +5,7 @@ import com.kahano.Task.tracking.and.management.tool.Services.TaskSetService;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,6 +53,7 @@ public class TaskSetServiceImpl implements TaskSetService {
         ));
     }
 
+    @Transactional
     @Override
     public TaskSet updateTaskSet(UUID taskSetId, TaskSet taskSet) {
 
@@ -80,6 +82,12 @@ public class TaskSetServiceImpl implements TaskSetService {
     @Override
     public Optional<TaskSet> getTaskSet(UUID id) {
         return taskSetRepository.findById(id);
+
+    }
+
+    @Override
+    public void deleteTaskSet(UUID taskSetId) {
+        taskSetRepository.deleteById(taskSetId);
 
     }
 }

@@ -47,6 +47,12 @@ public class TaskSetController {
         return taskSetMapper.toTaskSetDTO(taskSet);
     }
 
+    @DeleteMapping("/{task_set_id}")
+    public void DeleteTaskSet(@PathVariable("task_set_id") UUID taskSetId){
+
+        taskSetService.deleteTaskSet(taskSetId);
+    }
+
 
 
 
