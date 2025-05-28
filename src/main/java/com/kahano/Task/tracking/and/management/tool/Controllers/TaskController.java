@@ -19,12 +19,12 @@ public class TaskController {
 
     private final TaskService taskService;
     private final Task_TaskDTO_mapper taskMappper;
-    private final TaskRespository taskRespository;
 
-    public TaskController(TaskService taskService, Task_TaskDTO_mapper taskMappper, TaskRespository taskRespository) {
+
+    public TaskController(TaskService taskService, Task_TaskDTO_mapper taskMappper) {
         this.taskService = taskService;
         this.taskMappper = taskMappper;
-        this.taskRespository = taskRespository;
+
     }
 
     @PostMapping
