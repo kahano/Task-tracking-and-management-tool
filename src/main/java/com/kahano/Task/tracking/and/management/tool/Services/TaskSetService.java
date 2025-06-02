@@ -19,7 +19,7 @@ public interface TaskSetService {
 
     TaskSet updateTaskSet(UUID taskSetId, TaskSet taskSet);
 
-    Optional<TaskSet> getTaskSet(UUID id);
+    TaskSet getTaskSet(UUID id);
 
     @Transactional
     void deleteTaskSet(UUID taskSetId);

@@ -4,6 +4,7 @@ import com.kahano.Task.tracking.and.management.tool.domain.DTO.TaskSetDTO;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.Task;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskSet;
 import com.kahano.Task.tracking.and.management.tool.domain.entities.TaskStatus;
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,7 +14,15 @@ import java.util.stream.Collectors;
 @Component
 public class TaskSet_TaskSetDTO_mapper {
 
-    private Task_TaskDTO_mapper taskDTOMapper;
+
+    private final Task_TaskDTO_mapper taskDTOMapper;
+
+    public TaskSet_TaskSetDTO_mapper(Task_TaskDTO_mapper taskDTOMapper) {
+        this.taskDTOMapper = taskDTOMapper;
+    }
+
+
+
 
     public TaskSet toTaskSet(TaskSetDTO taskSetDTO) {
         return new TaskSet(
@@ -30,6 +39,7 @@ public class TaskSet_TaskSetDTO_mapper {
     }
 
     public TaskSetDTO toTaskSetDTO(TaskSet taskSet) {
+
         final List<Task> tasks = taskSet.getTasks();
         return new TaskSetDTO(
                 taskSet.getId(),

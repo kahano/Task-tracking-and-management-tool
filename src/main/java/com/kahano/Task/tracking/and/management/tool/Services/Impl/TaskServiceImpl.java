@@ -39,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findByTaskSetIdAndTaskId(taskSetId, taskId);
 
     }
-    @Transactional
+
     @Override
     public Task createTask(UUID taskListId, Task task) {
 
@@ -57,11 +57,12 @@ public class TaskServiceImpl implements TaskService {
                         new IllegalArgumentException("Invalid TaskSet ID provided")
                 );
         LocalDateTime now = LocalDateTime.now();
+        LocalDate today = LocalDate.now();
         return taskRepository.save(new Task(
                 null,
                 task.getTitle(),
                 task.getDescription(),
-                task.getDueDate(),
+                today,
                 priority,
                 TaskStatus.OPEN,
                 now,now,

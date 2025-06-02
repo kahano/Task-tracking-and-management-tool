@@ -13,6 +13,7 @@ public interface TaskService {
 
     Optional<Task> getTaskById(UUID taskSetId, UUID taskId);
 
+    @Transactional
     Task createTask(UUID taskListId, Task task);
 
     Task UpdateTask(UUID taskListId, UUID taskId, Task task);

@@ -80,8 +80,8 @@ public class TaskSetServiceImpl implements TaskSetService {
     }
 
     @Override
-    public Optional<TaskSet> getTaskSet(UUID id) {
-        return taskSetRepository.findById(id);
+    public TaskSet getTaskSet(UUID id) {
+        return taskSetRepository.findById(id).orElseThrow(()-> new IllegalStateException("TaskSet is not found"));
 
     }
 

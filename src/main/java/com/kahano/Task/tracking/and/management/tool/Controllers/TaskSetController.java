@@ -37,8 +37,9 @@ public class TaskSetController {
     }
 
     @GetMapping("/{task_set_id}")
-    public Optional<TaskSetDTO> getTaskSet(@PathVariable("task_set_id") UUID id){
-        return taskSetService.getTaskSet(id).map(taskSetMapper::toTaskSetDTO);
+    public TaskSetDTO getTaskSet(@PathVariable("task_set_id") UUID id){
+        TaskSet taskSet = taskSetService.getTaskSet(id);
+        return taskSetMapper.toTaskSetDTO(taskSet);
     }
 
     @PutMapping("/{task_set_id}")

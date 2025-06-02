@@ -242,7 +242,7 @@ class TaskSetServiceImplTest {
 
         when(taskSetRepository_test.findById(id)).thenReturn(Optional.of(taskSetUpdate));
 
-        Optional<TaskSet> getTaskSet = TaskService_test.getTaskSet(id);
+        Optional<TaskSet> getTaskSet = Optional.ofNullable(TaskService_test.getTaskSet(id));
 
         // then
         assertThat(getTaskSet).isNotNull();

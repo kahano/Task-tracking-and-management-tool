@@ -8,6 +8,6 @@ public record TaskSetDTO(
         UUID id,
         String title,
         String Description,
-        Integer integer, Double aDouble, List<TaskDTO> tasks
+        Integer count, Double progress, List<TaskDTO> tasks
 ) {
 }

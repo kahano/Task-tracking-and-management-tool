@@ -12,7 +12,7 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name="Task")
+@Table(name="tasks")
 @Data
 @Builder
 @RequiredArgsConstructor

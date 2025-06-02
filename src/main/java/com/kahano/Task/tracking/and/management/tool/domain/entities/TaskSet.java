@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="TaskSet")
+@Table(name="task_lists")
 @NoArgsConstructor
 @Data
 @Builder
