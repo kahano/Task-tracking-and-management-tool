@@ -1,7 +1,35 @@
-### GET request to example server
-GET http://localhost:8080
-###
-GET http://localhost:8080/api/v1/task-set
+
+### Add a new task-list
+POST http://localhost:8080/api/v1/task-set
+content-type: application/json
+
+{
+    "title": "Today's mission",
+    "Description" : "Management work"
+
+
+}
+### Adding a task to the specified task-list
+POST http://localhost:8080/task/39353bee-5081-4707-aca0-e8c9c93dcb6f/tasks
+content-type: application/json
+
+{
+    "title": "Finishing the task",
+    "description": "Submitting our work together today",
+    "priority": "MEDIUM",
+    "status": "OPEN"
+}
+
+### retrieve the specified task from the task-List
+
+GET http://localhost:8080/task/39353bee-5081-4707-aca0-e8c9c93dcb6f/tasks/34502020-df69-4eb7-bcb1-d9d8c407fb77
+content-type: application/json
+
+
+### retrieve the task-List
+
+GET http://localhost:8080/api/v1/task-set/39353bee-5081-4707-aca0-e8c9c93dcb6f
+
 
 
 
